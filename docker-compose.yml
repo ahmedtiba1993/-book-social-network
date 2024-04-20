@@ -1,0 +1,33 @@
+services:
+  postgres:
+    # Configuration for PostgreSQL database service
+    container_name: my-postgres  # Custom name for the container
+    image: postgres  # Docker image used for the PostgreSQL database
+    environment:
+      POSTGRES_USER: admin  # Username for accessing the database
+      POSTGRES_PASSWORD: admin  # Password for the database user
+      PGDATA: /var/lib/postgres/data  # Directory where PostgreSQL data will be stored
+      POSTGRES_DB: book-social-network  # Name of the database to be created
+    volumes:
+      - postgres:/data/postgres  # Mounting a volume to persist PostgreSQL data
+    ports:
+      - 5432:5432  # Mapping container port 5432 to host port 5432 for PostgreSQL access
+    networks:
+      - book-social-network  # Connecting the container to the custom bridge network
+    restart: unless-stopped  # Restart policy for the container
+
+  mail-dev:
+    # Configuration for MailDev service (for email development/testing)
+    container_name: mail-dev-bsn  # Custom name for the container
+    image: maildev/maildev  # Docker image used for MailDev
+    ports:
+      - 1080:1080  # Mapping container port 1080 to host port 1080 for web interface
+      - 1025:1025  # Mapping container port 1025 to host port 1025 for SMTP
+
+networks:
+  book-social-network:
+    driver: bridge  # Defining a custom bridge network for containers
+
+volumes:
+  postgres:
+    driver: local  # Defining a local volume for PostgreSQL data persistence

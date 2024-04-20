@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev  # Activating profile for Spring
+  servlet:
+    multipart:
+      max-file-size: 50MB  # Setting the maximum file size for multipart requests to 50MB
+
+springdoc:
+  default-produces-media-type: application/json  # Configuring the default media type for SpringDoc OpenAPI
+
+server:
+  servlet:
+    context-path: /api/v1/  # Setting the context path for the servlet to '/api/v1/'

@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    # Configuration for the datasource connecting to a PostgreSQL database
+    url: jdbc:postgresql://localhost:5432/book_social_network  # JDBC URL for connecting to the database
+    username: admin  # Username for accessing the database
+    password: admin  # Password for the database user
+    driver-class-name: org.postgresql.Driver  # Driver class for PostgreSQL
+
+  jpa:
+    # Configuration for Java Persistence API (JPA)
+    hibernate:
+      ddl-auto: update  # Hibernate behavior for updating the database schema
+    show-sql: false  # Flag indicating whether SQL statements should be logged
+    properties:
+      hibernate:
+        format_sql: true  # Configuring Hibernate to format SQL statements for better readability
+    database: postgresql  # Setting the database type to PostgreSQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # Specifying the Hibernate dialect for PostgreSQL
+
+  mail:
+    # Configuration for sending emails
+    host: localhost  # SMTP server host
+    port: 1025  # SMTP server port
+    username: ahmedtiba1993  # Username for authentication (if required)
+    password: admin  # Password for authentication (if required)
+    properties:
+      mail:
+        smtp:
+          trust: "*"  # Trust all certificates
+        auth: true  # Enable authentication
+        starttls:
+          enabled: true  # Enable STARTTLS for secure communication
+        connectiontimeout: 5000  # Connection timeout in milliseconds
+        timeout: 3000  # Timeout in milliseconds
+        writetimeout: 5000  # Write timeout in milliseconds
+
