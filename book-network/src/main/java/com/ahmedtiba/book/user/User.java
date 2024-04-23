@@ -1,7 +1,13 @@
 package com.ahmedtiba.book.user;
 
 import com.ahmedtiba.book.role.Role;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,6 +22,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static jakarta.persistence.FetchType.EAGER;
 
 @Getter
 @Setter
@@ -39,7 +47,7 @@ public class User implements UserDetails, Principal {
     private boolean accountLocked;
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = EAGER)
     private List<Role> roles;
 
     @CreatedDate
@@ -93,7 +101,7 @@ public class User implements UserDetails, Principal {
         return enabled;
     }
 
-    private String fullName() {
+    public String getFullName() {
         return firstname + " " + lastname;
     }
 }

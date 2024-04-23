@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: admin  # Username for accessing the database
       POSTGRES_PASSWORD: admin  # Password for the database user
       PGDATA: /var/lib/postgres/data  # Directory where PostgreSQL data will be stored
-      POSTGRES_DB: book-social-network  # Name of the database to be created
+      POSTGRES_DB: book_social_network  # Name of the database to be created
     volumes:
       - postgres:/data/postgres  # Mounting a volume to persist PostgreSQL data
     ports:
@@ -30,4 +30,5 @@ networks:
 
 volumes:
   postgres:
+    name: postgres-volume
     driver: local  # Defining a local volume for PostgreSQL data persistence
