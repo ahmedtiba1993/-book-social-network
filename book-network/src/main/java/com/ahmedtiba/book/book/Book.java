@@ -1,10 +1,10 @@
 package com.ahmedtiba.book.book;
 
 import com.ahmedtiba.book.common.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.ahmedtiba.book.feedback.Feedback;
+import com.ahmedtiba.book.history.BookTransactionHistory;
+import com.ahmedtiba.book.user.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +16,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,5 +33,15 @@ public class Book extends BaseEntity {
     private String bookCover;
     private boolean archived;
     private boolean shareable;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookTransactionHistory> histories;
+
+    @ManyToOne
+    @JoinColumn(name="ownerId")
+    private User owner;
+
+    @OneToMany(mappedBy = "book")
+    private List<Feedback> feedbacks;
 
 }
