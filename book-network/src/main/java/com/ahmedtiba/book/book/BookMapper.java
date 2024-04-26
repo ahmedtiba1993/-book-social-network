@@ -1,5 +1,6 @@
 package com.ahmedtiba.book.book;
 
+import com.ahmedtiba.book.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,6 +30,18 @@ public class BookMapper {
                 .shareable(book.isShareable())
                 .owner(book.getOwner().getFullName())
                 //.cover(FileUtils.readFileFromLocation(book.getBookCover()))
+                .build();
+    }
+
+    public BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory history) {
+        return BorrowedBookResponse.builder()
+                .id(history.getBook().getId())
+                .title(history.getBook().getTitle())
+                .authorName(history.getBook().getAuthorName())
+                .isbn(history.getBook().getIsbn())
+                .rate(history.getBook().getRate())
+                .returned(history.isReturned())
+                .returnApproved(history.isReturnApproved())
                 .build();
     }
 }
