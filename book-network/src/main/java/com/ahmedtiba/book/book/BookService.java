@@ -1,5 +1,6 @@
 package com.ahmedtiba.book.book;
 
+import com.ahmedtiba.book.file.FileStorageService;
 import com.ahmedtiba.book.exception.OperationNotPermittedException;
 import com.ahmedtiba.book.common.PageResponse;
 import com.ahmedtiba.book.history.BookTransactionHistory;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +28,7 @@ public class BookService {
     private final BookMapper bookMapper;
     private final BookRepository bookRepository;
     private final BookTransactionHistoryRepository transactionHistoryRepository;
+    private final FileStorageService fileStorageService;
 
     public Integer saveBook(BookRequest request, Authentication connectedUser) {
         User user = (User) connectedUser.getPrincipal();
@@ -140,5 +143,13 @@ public class BookService {
 
         bookTransactionHistory.setReturnApproved(true);
         return transactionHistoryRepository.save(bookTransactionHistory).getId();
+    }
+
+    public void uploadBookCoverPicture(MultipartFile file, Authentication connectedUser, Integer bookId) {
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> new EntityNotFoundException("No book found with ID:: " + bookId));
+        User user = ((User) connectedUser.getPrincipal());
+        var profilePicture = fileStorageService.saveFile(file, user.getId());
+        book.setBookCover(profilePicture);
+        bookRepository.save(book);
     }
 }
