@@ -690,6 +690,7 @@
       },
       "RegistrationRequest": {
         "required": [
+          "confirmPassword",
           "email",
           "firstname",
           "lastname",
@@ -710,6 +711,12 @@
             "maxLength": 2147483647,
             "minLength": 8,
             "type": "string"
+          },
+          "confirmPassword": {
+            "type": "string"
+          },
+          "passwordConfirmed": {
+            "type": "boolean"
           }
         }
       },

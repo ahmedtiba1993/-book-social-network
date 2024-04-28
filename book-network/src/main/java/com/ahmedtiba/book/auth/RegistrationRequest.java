@@ -1,9 +1,6 @@
 package com.ahmedtiba.book.auth;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,5 +27,14 @@ public class RegistrationRequest {
     @NotBlank(message = "PASSWORD_REQUIRED")
     @Size(min = 8, message = "MINIMUM_PASSWORD_LENGTH_8_CHARACTERS")
     private String password;
+
+    @NotEmpty(message = "CONFIRM_PASSWORD_REQUIRED")
+    @NotBlank(message = "CONFIRM_PASSWORD_REQUIRED")
+    private String confirmPassword;
+
+    @AssertTrue(message = "PASSWORDS_DO_NOT_MATCH")
+    public boolean isPasswordConfirmed() {
+        return password != null && password.equals(confirmPassword);
+    }
 
 }

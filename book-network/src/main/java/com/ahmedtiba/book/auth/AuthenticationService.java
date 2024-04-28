@@ -41,6 +41,10 @@ public class AuthenticationService {
     public void register(RegistrationRequest request) throws MessagingException {
 
         var userRole = roleRepository.findByName("USER").orElseThrow(() -> new IllegalStateException("ROLE_NOT_FOUND"));
+        var userByEmail = userRepository.findByEmail(request.getEmail());
+        if(userByEmail.isPresent()) {
+            throw new MessagingException("EMAIL_EXISTS");
+        }
         var user = User.builder().firstname(request.getFirstname()).lastname(request.getLastname()).email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).accountLocked(false).enabled(false).roles(List.of(userRole)).build();
         userRepository.save(user);
         sendValidationEmail(user);
