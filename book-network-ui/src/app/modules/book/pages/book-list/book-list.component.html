@@ -1,3 +1,8 @@
-<div *ngFor="let books of bookResponse.content">
-  {{books.title}}
+<div class="container mt-5">
+  <h1>Liste des livres</h1>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    <app-book-card [book]="book" *ngFor="let book of bookResponse.content"></app-book-card>
+  </div>
+
 </div>
