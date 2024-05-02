@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../../../services/services/book.service";
 import {Router} from "@angular/router";
 import {PageResponseBookResponse} from "../../../../services/models/page-response-book-response";
+import {BookResponse} from "../../../../services/models/book-response";
 
 @Component({
   selector: 'app-book-list',
@@ -10,9 +11,11 @@ import {PageResponseBookResponse} from "../../../../services/models/page-respons
 })
 export class BookListComponent implements OnInit {
   bookResponse : PageResponseBookResponse = {};
-  public page = 0;
-  public size = 3;
+  page = 0;
+  size = 3;
   pages: any = [];
+  message: string = "";
+  level  = "successs"
 
   constructor(
     private bookService: BookService,
@@ -66,5 +69,15 @@ export class BookListComponent implements OnInit {
 
   get isLastPage() {
     return this.page === this.bookResponse.totalPages as number - 1;
+  }
+
+  boorowBook(book: BookResponse) {
+    this.message = ""
+    this.bookService.borrowBook({
+      'book-id': book.id as number,
+    }).subscribe({next: () => {
+      this.level = "success"
+      this.message = "Book successfully added to your list";
+    }})
   }
 }

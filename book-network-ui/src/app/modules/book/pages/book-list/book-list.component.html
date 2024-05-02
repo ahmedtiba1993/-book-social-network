@@ -1,9 +1,20 @@
 <div class="container mt-5">
   <h1>Liste des livres</h1>
+  <hr>
+  <div *ngIf="message"
+       [class.alert-success]="level === 'success'"
+       [class.alert-danger]="level === 'error'"
+  >
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-    <app-book-card [book]="book" *ngFor="let book of bookResponse.content"></app-book-card>
   </div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    <app-book-card
+      [book]="book"
+      (borrow)="boorowBook($event)"
+      *ngFor="let book of bookResponse.content"></app-book-card>
+  </div>
+
+  <!-- pagiantion -->
   <div class="d-flex justify-content-center mt-3">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
