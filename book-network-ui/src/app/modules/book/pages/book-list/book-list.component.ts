@@ -15,7 +15,7 @@ export class BookListComponent implements OnInit {
   size = 3;
   pages: any = [];
   message: string = "";
-  level  = "successs"
+  level  = "success"
 
   constructor(
     private bookService: BookService,
@@ -78,6 +78,10 @@ export class BookListComponent implements OnInit {
     }).subscribe({next: () => {
       this.level = "success"
       this.message = "Book successfully added to your list";
-    }})
+    },error:(err)=>{
+        this.level = 'error';
+        this.message = err.error.error;
+      }
+    })
   }
 }

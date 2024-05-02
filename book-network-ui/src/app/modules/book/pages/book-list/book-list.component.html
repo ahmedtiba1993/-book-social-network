@@ -2,10 +2,11 @@
   <h1>Liste des livres</h1>
   <hr>
   <div *ngIf="message"
+       class="alert"
        [class.alert-success]="level === 'success'"
        [class.alert-danger]="level === 'error'"
   >
-
+  {{message}}
   </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     <app-book-card
