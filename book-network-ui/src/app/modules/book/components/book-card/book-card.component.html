@@ -1,5 +1,9 @@
 <div class="col mb-3">
-  <div class="card">
+  <div
+    class="card border-2 p-1"
+    [class.border-success]="book.shareable"
+    [class.border-warning]="book.archived"
+  >
     <img [src]="bookCover" class="card-img-top" height="200" alt="Couverture du livre">
     <div class="card-body">
       <h5 class="card-title"><i class="fa-solid fa-book"></i> {{ book.title }}</h5>

@@ -16,8 +16,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private authService : AuthenticationService,
-    private tokenService : TokenService
+    private authService: AuthenticationService,
+    private tokenService: TokenService
   ) {
   }
 
@@ -27,16 +27,13 @@ export class LoginComponent {
       next: (res) => {
         this.tokenService.token = res.token as string;
         this.router.navigate(['books']);
-      },error:err => {
-        if(err.error.validationErrors){
+      }, error: err => {
+        if (err.error.validationErrors) {
           this.errorMsg = err.error.validationErrors;
-        }else{
+        } else {
           this.errorMsg.push(err.error.error);
         }
       }
     });
-  }
-  register() {
-    this.router.navigate(['register']);
   }
 }
