@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,6 +7,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
+  router = inject(Router);
 
   ngOnInit(): void {
     const linkColor = document.querySelectorAll('.nav-link');
@@ -18,6 +21,11 @@ export class MenuComponent implements OnInit {
         link.classList.add('active');
       })
     })
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 
 }
