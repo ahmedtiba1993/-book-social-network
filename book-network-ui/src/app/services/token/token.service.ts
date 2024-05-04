@@ -35,4 +35,15 @@ export class TokenService {
     }
     return true;
   }
+
+  get userRoles(): string[] {
+    const token = this.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log(decodedToken.authorities);
+      return decodedToken.authorities;
+    }
+    return [];
+  }
 }
