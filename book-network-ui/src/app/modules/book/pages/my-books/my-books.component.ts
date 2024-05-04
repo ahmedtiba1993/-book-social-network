@@ -9,8 +9,8 @@ import {BookResponse} from "../../../../services/models/book-response";
   templateUrl: './my-books.component.html',
   styleUrls: ['./my-books.component.scss']
 })
-export class MyBooksComponent implements OnInit{
-  bookResponse : PageResponseBookResponse = {};
+export class MyBooksComponent implements OnInit {
+  bookResponse: PageResponseBookResponse = {};
   page = 0;
   size = 3;
   pages: any = [];
@@ -51,7 +51,7 @@ export class MyBooksComponent implements OnInit{
   }
 
   goToPreviousPage() {
-    this.page --;
+    this.page--;
     this.findAllBooks();
   }
 
@@ -70,18 +70,26 @@ export class MyBooksComponent implements OnInit{
   }
 
   archiveBook(book: BookResponse) {
-
+    this.bookService.updateArchivedStatus({
+      'book-id': book.id as number,
+    }).subscribe({
+      next: () => {
+        book.archived = !book.archived;
+      }
+    });
   }
 
   sahreBook(book: BookResponse) {
     this.bookService.updateShareableStatus({
       'book-id': book.id as number,
-    }).subscribe({next: () => {
+    }).subscribe({
+      next: () => {
         book.shareable = !book.shareable;
-      }})
+      }
+    });
   }
 
   editBook(book: BookResponse) {
-    this.router.navigate(['books','manage',book.id]);
+    this.router.navigate(['books', 'manage', book.id]);
   }
 }
