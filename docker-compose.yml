@@ -34,6 +34,16 @@ services:
     depends_on: # Dependencies of the service
       - postgres # This service depends on another service named "postgres"
 
+  bsn-ui:
+    container_name: bsn-ui
+    image: bsn/bsn-ui:1.0.0
+    ports:
+      - 8080:80
+    networks:
+      - book-social-network
+    depends_on:
+      - bsn-api
+
 networks:
   book-social-network:
     driver: bridge  # Defining a custom bridge network for containers
