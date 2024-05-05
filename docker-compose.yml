@@ -1,7 +1,7 @@
 services:
   postgres:
     # Configuration for PostgreSQL database service
-    container_name: my-postgres  # Custom name for the container
+    container_name: postgres-sql-bsn  # Custom name for the container
     image: postgres  # Docker image used for the PostgreSQL database
     environment:
       POSTGRES_USER: admin  # Username for accessing the database
@@ -23,6 +23,16 @@ services:
     ports:
       - 1080:1080  # Mapping container port 1080 to host port 1080 for web interface
       - 1025:1025  # Mapping container port 1025 to host port 1025 for SMTP
+
+  bsn-api:
+    container_name: bsn-api
+    image: bsn/bsn:1.0.0
+    ports:
+      - 8088:8088
+    networks:
+      - book-social-network
+    depends_on: # Dependencies of the service
+      - postgres # This service depends on another service named "postgres"
 
 networks:
   book-social-network:
