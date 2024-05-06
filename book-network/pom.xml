@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ahmedtiba</groupId>
 	<artifactId>book-network</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>book-network-api</name>
 	<description>book network social</description>
 	<properties>

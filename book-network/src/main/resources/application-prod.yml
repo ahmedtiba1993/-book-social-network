@@ -16,10 +16,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   mail:
-    host: smtp.gmail.com
+    host: ${EMAIL_HOSTNAME}
     port: 465
-    username: email
-    password: mots de passe d'application
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -43,4 +43,6 @@ application:
     uploads:
       photos-output-path: ./uploads
   cors:
-    origins
+    origins: http://213.32.89.149:8080/
+  server:
+    port: 8088

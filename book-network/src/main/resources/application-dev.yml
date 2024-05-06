@@ -46,6 +46,6 @@ application:
     uploads:
       photos-output-path: ./uploads
   cors:
-    origins: http://localhost:8080/,http://localhost:4200
+    origins: http://localhost:8080/,http://localhost:4200,http://213.32.89.149:8080/
 server:
   port: 8088
