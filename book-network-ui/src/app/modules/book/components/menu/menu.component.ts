@@ -1,5 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import {KeycloakService} from "../../../../services/keycloak/keycloak.service";
 
 @Component({
   selector: 'app-menu',
@@ -8,6 +9,10 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
+  constructor(
+    private keycloakService: KeycloakService
+  ) {
+  }
   router = inject(Router);
 
   ngOnInit(): void {
@@ -23,9 +28,8 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['login']);
+  async logout() {
+    this.keycloakService.logout()
   }
 
 }

@@ -2,7 +2,7 @@ spring:
   datasource:
     # Configuration for the datasource connecting to a PostgreSQL database
     url: jdbc:postgresql://localhost:5432/book_social_network  # JDBC URL for connecting to the database
-    username: admin  # Username for accessing the database
+    username: postgres  # Username for accessing the database
     password: admin  # Password for the database user
     driver-class-name: org.postgresql.Driver  # Driver class for PostgreSQL
 

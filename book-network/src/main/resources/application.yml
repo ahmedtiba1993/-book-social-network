@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod  # Activating profile for Spring
+    active: dev  # Activating profile for Spring
   servlet:
     multipart:
       max-file-size: 50MB  # Setting the maximum file size for multipart requests to 50MB
