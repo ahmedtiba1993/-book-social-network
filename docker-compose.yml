@@ -32,6 +32,11 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      DB_VENDOR: POSTGRES
+      DB_ADDR: localhost:5432
+      DB_DATABASE: book_social_network
+      DB_USER: postgres
+      DB_PASSWORD: admin
     networks:
       - book-social-network
     command:

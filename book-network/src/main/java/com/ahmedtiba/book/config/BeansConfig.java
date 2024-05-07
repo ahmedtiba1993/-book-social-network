@@ -25,10 +25,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BeansConfig {
 
-    private final UserDetailsService userDetailsService;
-
     @Value("${application.cors.origins:*}")
     private List<String> allowedOrigin;
+
+    /*private final UserDetailsService userDetailsService;
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -44,20 +44,20 @@ public class BeansConfig {
     }
 
     @Bean
-    public AuditorAware<Integer> auditorAware() {
-        return new ApplicationAuditAware();
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+*/
+    @Bean
+    public AuditorAware<String> auditorAware() {
+        return new ApplicationAuditAware();
     }
 
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
-        //config.setAllowCredentials(true);
+        config.setAllowCredentials(true);
         config.setAllowedOrigins(allowedOrigin);
         config.setAllowedHeaders(Arrays.asList("*")); //not recommended for production
         config.setAllowedMethods(Arrays.asList("*"));

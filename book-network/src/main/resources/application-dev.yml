@@ -2,7 +2,7 @@ spring:
   datasource:
     # Configuration for the datasource connecting to a PostgreSQL database
     url: jdbc:postgresql://localhost:5432/book_social_network  # JDBC URL for connecting to the database
-    username: postgres  # Username for accessing the database
+    username: admin  # Username for accessing the database
     password: admin  # Password for the database user
     driver-class-name: org.postgresql.Driver  # Driver class for PostgreSQL
 
@@ -34,14 +34,13 @@ spring:
         timeout: 3000  # Timeout in milliseconds
         writetimeout: 5000  # Write timeout in milliseconds
 
-application:
   security:
-    jwt:
-      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-      expiration: 86400000
-  mailing:
-    frontend:
-      activation-url: http://localhost:4200/activate-account
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9090/realms/book-social-network"
+
+application:
   file:
     uploads:
       photos-output-path: ./uploads

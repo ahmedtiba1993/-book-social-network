@@ -37,9 +37,9 @@ public class Book extends BaseEntity {
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
 
-    @ManyToOne
-    @JoinColumn(name="ownerId")
-    private User owner;
+    //@ManyToOne
+    //@JoinColumn(name="ownerId")
+    //private User owner;
 
     @OneToMany(mappedBy = "book")
     private List<Feedback> feedbacks;
