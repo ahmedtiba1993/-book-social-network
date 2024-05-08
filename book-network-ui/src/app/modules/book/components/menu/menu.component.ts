@@ -32,4 +32,7 @@ export class MenuComponent implements OnInit {
     this.keycloakService.logout()
   }
 
+  edtiProfile() {
+    this.keycloakService.editProfile();
+  }
 }

@@ -41,7 +41,10 @@ export class KeycloakService {
   }
 
   logout() {
-    // this.keycloak.accountManagement();
     return this.keycloak.logout();
+  }
+
+  editProfile() {
+    return this.keycloak.accountManagement();
   }
 }
