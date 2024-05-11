@@ -3,19 +3,13 @@ package com.ahmedtiba.book.book;
 import com.ahmedtiba.book.common.BaseEntity;
 import com.ahmedtiba.book.feedback.Feedback;
 import com.ahmedtiba.book.history.BookTransactionHistory;
-import com.ahmedtiba.book.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter

@@ -5,7 +5,6 @@ import com.ahmedtiba.book.exception.OperationNotPermittedException;
 import com.ahmedtiba.book.common.PageResponse;
 import com.ahmedtiba.book.history.BookTransactionHistory;
 import com.ahmedtiba.book.history.BookTransactionHistoryRepository;
-import com.ahmedtiba.book.user.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
